@@ -81,6 +81,7 @@ class DNNTTS(object):
         checkpoint = torch.load(
             model_dir / "acoustic_model.pth",
             map_location=device,
+            weights_only=False,
         )
         self.acoustic_model.load_state_dict(checkpoint["state_dict"])
         self.acoustic_in_scaler = StandardScaler(
