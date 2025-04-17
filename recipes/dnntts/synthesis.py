@@ -97,6 +97,7 @@ def my_app(config: DictConfig) -> None:
     checkpoint = torch.load(
         to_absolute_path(config.duration.checkpoint),
         map_location=device,
+        weights_only=False,
     )
     duration_model.load_state_dict(checkpoint["state_dict"])
     duration_in_scaler = joblib.load(to_absolute_path(config.duration.in_scaler_path))
@@ -109,6 +110,7 @@ def my_app(config: DictConfig) -> None:
     checkpoint = torch.load(
         to_absolute_path(config.acoustic.checkpoint),
         map_location=device,
+        weights_only=False,
     )
     acoustic_model.load_state_dict(checkpoint["state_dict"])
     acoustic_in_scaler = joblib.load(to_absolute_path(config.acoustic.in_scaler_path))
